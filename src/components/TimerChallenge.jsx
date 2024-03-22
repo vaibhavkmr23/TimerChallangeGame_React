@@ -6,10 +6,14 @@ export default function TimerChallange({ title, targetTime }) {
   const [timerStarted, setTimerStarted] = useState(false);
 
   const timer = useRef();
+  const dialog = useRef();
+
   function handleStart() {
     timer.current = setTimeout(() => {
       setTimerExpired(true);
+      dialog.current.showModal();
     }, targetTime * 1000);
+
     setTimerStarted(true);
   }
 
@@ -18,7 +22,7 @@ export default function TimerChallange({ title, targetTime }) {
   }
   return (
     <>
-      {timerExpired && <ResultModal result="Lost" targetTime={targetTime} />}
+      <ResultModal result="Lost" targetTime={targetTime} ref={dialog} />
       <section className="challenge">
         <h2>{title}</h2>
         <p className="challenge-time">
