@@ -14,7 +14,7 @@ const ResultModal = forwardRef(function ResultModal({ remainingTime, targetTime,
   const score = Math.round((1 - remainingTime/(targetTime*1000))*100)
   
   return (
-    <dialog ref={dialog} className="result-modal">
+    <dialog ref={dialog} className="result-modal" onClose={onReset}>
       {userLost && <h2>You Lost</h2>}
       {!userLost && <h2> Your Score {score}</h2>}
       <p>
